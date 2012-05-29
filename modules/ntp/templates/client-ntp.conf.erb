@@ -1,0 +1,15 @@
+restrict default kod nomodify notrap nopeer noquery
+
+restrict 127.0.0.1 
+restrict -6 ::1
+
+
+<% ntpServerList.each do |ntpServer| -%>
+server <%= ntpServer -%>
+<% end -%>
+
+fudge	127.127.1.0 stratum 10	
+
+driftfile /var/lib/ntp/drift
+
+keys /etc/ntp/keys
